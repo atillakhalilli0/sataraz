@@ -23,18 +23,41 @@
       }
 
       .gridCategories > div {
+        position: relative;
         background: #fef7ec;
         border: 1px solid #ccc;
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        overflow: hidden; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
       }
 
       .gridCategories > div img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 10px; 
+        border-radius: 10px;
+      }
+
+      .category-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        z-index: 2;
+      }
+
+      .gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        z-index: 1;
       }
 
       .item1 { grid-column: span 3; grid-row: span 2; }
@@ -745,7 +768,7 @@
         <!-- Slide 4 -->
         <div class="swiper-slide relative">
           <img
-            src="/img/hero-4.jpg"
+            src="/img/hero-4.webp"
             alt="Hero 4"
             class="w-full h-full object-cover"
           />
@@ -787,6 +810,7 @@
         <div class="swiper-button-prev text-white"></div>
         <div class="swiper-pagination"></div> -->
     </div>
+    
     <section class="py-20">
       <h1 class="text-4xl font-bold text-center mb-12 text-gray-900">
         Our Advantages
@@ -801,20 +825,13 @@
           <div class="flex justify-center mb-4">
             <div class="bg-indigo-100 p-4 rounded-full">
               <!-- Sample SVG icon -->
-              <svg
-                class="w-8 h-8 text-indigo-600"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 4v16m8-8H4" />
-              </svg>
+              <svg class="w-10 h-10 text-indigo-600" fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>shield-plus</title> <path d="M30.303 6.786c-5.167-1.39-9.694-3.383-13.826-5.952l0.217 0.125c-0.195-0.131-0.435-0.209-0.693-0.209s-0.498 0.078-0.698 0.212l0.005-0.003c-3.916 2.441-8.443 4.434-13.252 5.743l-0.358 0.083c-0.548 0.141-0.946 0.63-0.946 1.213 0 0.099 0.012 0.196 0.034 0.289l-0.002-0.008c0.541 2.352 5.571 22.971 15.218 22.971 9.648 0 14.676-20.619 15.219-22.971 0.020-0.084 0.032-0.181 0.032-0.28 0-0.583-0.399-1.073-0.939-1.211l-0.009-0.002zM16 28.75c-6.109 0-10.827-13.394-12.497-19.868 4.756-1.374 8.904-3.212 12.732-5.524l-0.235 0.132c3.593 2.18 7.74 4.018 12.125 5.3l0.371 0.093c-1.668 6.475-6.387 19.868-12.496 19.868zM14.75 10.831v3.919h-3.919c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h3.919v3.92c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-3.92h3.92c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0h-3.92v-3.919c0-0.69-0.56-1.25-1.25-1.25s-1.25 0.56-1.25 1.25v0z"></path> </g></svg>
             </div>
           </div>
-          <h3 class="text-lg font-semibold">Own Production</h3>
+          <h3 class="text-lg font-semibold">Quality and Safety</h3>
           <p class="text-sm text-gray-500 mt-2">
-            Modern equipment, full production cycle
+            100% original products <br>
+            Minimum risk of allergic reactions
           </p>
         </div>
         <!-- Repeat for other cards -->
@@ -823,62 +840,46 @@
         >
           <div class="flex justify-center mb-4">
             <div class="bg-indigo-100 p-4 rounded-full">
-              <svg
-                class="w-8 h-8 text-indigo-600"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 4v16m8-8H4" />
-              </svg>
+              <svg class="w-10 h-10 text-indigo-600" viewBox="0 -2 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="delivery-truck" transform="translate(-2 -4)"> <path id="secondary" fill="#2ca9bc" d="M20.24,10.81,19,10.5l-.79-2.77a1,1,0,0,0-1-.73H13V17h2a2,2,0,0,1,4,0h1a1,1,0,0,0,1-1V11.78A1,1,0,0,0,20.24,10.81Z"></path> <path id="primary" d="M9.17,17H13V6a1,1,0,0,0-1-1H5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <path id="primary-2" data-name="primary" d="M3,13v3a1,1,0,0,0,1,1h.87" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <path id="primary-3" data-name="primary" d="M14.87,17H13V7h4.25a1,1,0,0,1,1,.73L19,10.5l1.24.31a1,1,0,0,1,.76,1V16a1,1,0,0,1-1,1h-.89" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> <path id="primary-4" data-name="primary" d="M9,17a2,2,0,1,1-2-2A2,2,0,0,1,9,17Zm8-2a2,2,0,1,0,2,2A2,2,0,0,0,17,15ZM3,9H9" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path> </g> </g></svg>
             </div>
           </div>
-          <h3 class="text-lg font-semibold">Fast Delivery</h3>
-          <p class="text-sm text-gray-500 mt-2">Reliable and quick shipping</p>
-        </div>
-        <div
-          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
-        >
-          <div class="flex justify-center mb-4">
-            <div class="bg-indigo-100 p-4 rounded-full">
-              <svg
-                class="w-8 h-8 text-indigo-600"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 4v16m8-8H4" />
-              </svg>
-            </div>
-          </div>
-          <h3 class="text-lg font-semibold">Customer Support</h3>
-          <p class="text-sm text-gray-500 mt-2">24/7 professional assistance</p>
-        </div>
-        <div
-          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
-        >
-          <div class="flex justify-center mb-4">
-            <div class="bg-indigo-100 p-4 rounded-full">
-              <svg
-                class="w-8 h-8 text-indigo-600"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 4v16m8-8H4" />
-              </svg>
-            </div>
-          </div>
-          <h3 class="text-lg font-semibold">Sustainability</h3>
+          <h3 class="text-lg font-semibold">Speed ​​and Convenience</h3>
           <p class="text-sm text-gray-500 mt-2">
-            Eco-friendly production process
+            Possibility of payment at the door <br>
+            Ease of online ordering
+          </p>
+        </div>
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full">
+              <svg class="w-10 h-10 text-indigo-600" fill="#000000" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Economic_sustainability"> <path d="M255,168.08a89.22,89.22,0,1,0,89.21,89.22A89.32,89.32,0,0,0,255,168.08Zm29,56.29h-29a10.19,10.19,0,0,0,0,20.38h.28a26.21,26.21,0,0,1,26.19,26.18v2.56a26.22,26.22,0,0,1-18.47,25v16h-16v-14.8H227v-16h28.24a10.2,10.2,0,0,0,10.19-10.19v-2.56a10.2,10.2,0,0,0-10.19-10.18h-.28a26.19,26.19,0,0,1-8-51.13V194.71h16v13.66h21Z"></path> <path d="M255,128.42A128.88,128.88,0,1,0,383.84,257.3,128.88,128.88,0,0,0,255,128.42Zm0,234.09A105.22,105.22,0,1,1,360.17,257.3,105.34,105.34,0,0,1,255,362.51Z"></path> <path d="M404.15,404.18A210.8,210.8,0,0,0,450,180.41C407.9,72.21,285.61,18.43,177.4,60.54l6.53,16.78c99-38.51,210.79,10.66,249.3,109.62a192.77,192.77,0,0,1-42,204.68l-12.8-12.47a9.51,9.51,0,0,0-16.15,6.94l.48,33.89a9.51,9.51,0,0,0,9.62,9.37l33.89-.4a9.51,9.51,0,0,0,6.52-16.32Z"></path> <path d="M181.85,431a192.44,192.44,0,0,1-60-311l11.34,11a9.51,9.51,0,0,0,16.15-6.94l-.48-33.89a9.49,9.49,0,0,0-9.62-9.37l-33.89.4A9.51,9.51,0,0,0,98.8,97.58l10.13,9.87A210.53,210.53,0,0,0,335.69,451.07l-6.52-16.77A191.29,191.29,0,0,1,181.85,431Z"></path> </g> </g></svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold">Economic Advantages</h3>
+          <p class="text-sm text-gray-500 mt-2">
+            Discounts on bulk purchases <br>
+            Loyalty program and earn points
+          </p>
+        </div>
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full">
+              <svg class="w-10 h-10 text-indigo-600" fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M408.274,56.527h-0.087c-4.503,0-8.109,3.65-8.109,8.153c0,4.503,3.694,8.153,8.196,8.153s8.153-3.65,8.153-8.153 C416.427,60.177,412.776,56.527,408.274,56.527z"></path> </g> </g> <g> <g> <path d="M290.912,389.623l-77.599-32.332c-3.455-1.439-5.686-4.787-5.686-8.53v-16.46l14.509-8.06 c12.431-6.907,20.621-19.485,21.908-33.647l0.032-0.351h7.576c14.086,0,25.546-11.46,25.546-25.546v-15.703 c2.284-5.523,8.696-23.2,8.696-47.587c0-33.695-13.199-65.487-37.165-89.521c-9.17-9.195-19.542-16.838-30.794-22.799 c-0.392-27.598-28.021-49.953-61.942-49.953s-61.55,22.355-61.943,49.953c-11.252,5.96-21.624,13.603-30.794,22.799 c-23.966,24.034-37.165,55.825-37.165,89.521c0,24.387,6.412,42.063,8.696,47.587v15.703c0,14.086,11.46,25.546,25.546,25.546 h7.576l0.031,0.351c1.287,14.162,9.478,26.741,21.909,33.647l14.509,8.06v16.46c0,3.742-2.232,7.09-5.686,8.53l-77.599,32.332 C8.271,394.957,0,407.364,0,421.231v52.178c0,14.086,11.46,25.546,25.546,25.546h260.892c14.086,0,25.546-11.46,25.546-25.546 v-52.178C311.983,407.364,303.712,394.957,290.912,389.623z M260.892,264.696c0,5.095-4.145,9.24-9.24,9.24h-6.093l3.261-35.873 h2.832c5.095,0,9.24,4.145,9.24,9.24V264.696z M155.992,55.44c21.355,0,39.325,11.054,44.29,25.933 c-13.966-4.898-28.895-7.453-44.29-7.453s-30.323,2.555-44.29,7.453C116.666,66.494,134.636,55.44,155.992,55.44z M60.331,273.936 c-5.095,0-9.24-4.145-9.24-9.24v-17.393c0-5.095,4.145-9.24,9.24-9.24h2.832l3.261,35.873H60.331z M97.768,309.987 c-7.711-4.284-12.792-12.086-13.59-20.87l-6.207-68.273c10.664-0.067,29.363-0.975,51.23-5.506 c44.72-9.265,81.204-29.479,105.507-58.455c2.894-3.449,2.443-8.592-1.008-11.485c-3.45-2.894-8.592-2.443-11.486,1.008 c-53.04,63.24-151.327,58.059-152.671,57.977v0.009c-0.412-0.025-0.829-0.03-1.253,0.009c-4.484,0.408-7.789,4.373-7.381,8.857 l0.772,8.501h-1.35c-5.708,0-10.985,1.883-15.243,5.058c-1.478-6.864-2.694-15.508-2.694-25.41 c0-29.348,11.509-57.05,32.406-78.007c21.333-21.393,50.167-33.175,81.191-33.175s59.857,11.781,81.191,33.175 c20.897,20.955,32.406,48.659,32.406,78.007c0,9.901-1.215,18.547-2.694,25.411c-4.258-3.176-9.534-5.059-15.243-5.059h-1.35 l0.773-8.502c0.22-2.409-0.644-4.792-2.355-6.503l-17.393-17.393c-3.184-3.184-8.346-3.184-11.529,0 c-3.184,3.184-3.184,8.345,0,11.529l14.693,14.693l-5.805,63.855c-6.658,5.889-27.775,20.588-72.694,20.588 c-4.503,0-8.153,3.65-8.153,8.153s3.65,8.153,8.153,8.153c31.214,0,52.574-6.536,66.428-13.435 c-2.189,2.859-4.96,5.289-8.203,7.091l-45.291,25.162c-8.099,4.499-17.769,4.499-25.867,0L97.768,309.987z M104.943,372.341 c9.55-3.979,15.72-13.235,15.72-23.58v-7.402l14.476,8.043c6.529,3.626,13.69,5.441,20.853,5.441s14.324-1.813,20.853-5.441 l14.476-8.043v7.402c0,10.347,6.17,19.602,15.72,23.58l8.552,3.563c-15.294,17.756-30.075,26.578-40.086,30.892 c-11.073,4.771-18.74,5.163-19.516,5.192c-0.776-0.028-8.443-0.421-19.516-5.192c-10.011-4.313-24.791-13.136-40.086-30.892 L104.943,372.341z M52.178,482.65H25.546c-5.095,0-9.24-4.145-9.24-9.24v-52.178c0-2.248,0.417-4.422,1.189-6.436l27.952,22.363 c4.279,3.422,6.731,8.527,6.731,14.006V482.65z M243.499,451.163v31.486H68.484v-31.486c0-10.46-4.684-20.205-12.851-26.739 l-25.921-20.737l50.923-21.218c26.865,33.228,54.02,42.37,67.203,44.879v27.582c0,4.503,3.65,8.153,8.153,8.153 s8.153-3.65,8.153-8.153v-27.582c13.184-2.509,40.338-11.651,67.203-44.879l50.923,21.218l-25.921,20.737 C248.183,430.958,243.499,440.704,243.499,451.163z M295.677,473.41c0,5.095-4.145,9.24-9.24,9.24h-26.633v-31.486 c0-5.479,2.453-10.583,6.731-14.007l27.952-22.362c0.772,2.014,1.189,4.188,1.189,6.436V473.41z"></path> </g> </g> <g> <g> <path d="M145.944,243.765c-3.896-8.085-13.292-13.311-23.939-13.311s-20.043,5.225-23.939,13.311 c-1.954,4.056-0.25,8.929,3.807,10.884c4.056,1.955,8.929,0.249,10.884-3.807c0.953-1.978,4.519-4.082,9.249-4.082 c4.73,0,8.295,2.103,9.249,4.082c1.404,2.917,4.318,4.617,7.351,4.617c1.187,0,2.393-0.261,3.533-0.81 C146.194,252.694,147.898,247.822,145.944,243.765z"></path> </g> </g> <g> <g> <path d="M213.917,243.765c-3.895-8.085-13.291-13.311-23.939-13.311s-20.043,5.225-23.939,13.311 c-1.955,4.057-0.25,8.929,3.807,10.884c4.056,1.955,8.929,0.249,10.884-3.807c0.953-1.978,4.519-4.082,9.249-4.082 s8.295,2.103,9.249,4.082c1.404,2.917,4.318,4.617,7.351,4.617c1.187,0,2.393-0.261,3.533-0.81 C214.167,252.694,215.872,247.822,213.917,243.765z"></path> </g> </g> <g> <g> <path d="M408.187,13.045c-57.243,0-103.813,46.57-103.813,103.813c0,30.035,12.718,57.98,35.132,77.723 c-11.247,18.412-23.453,29.023-23.578,29.131c-2.686,2.294-3.589,6.057-2.237,9.32c1.27,3.063,4.255,5.032,7.529,5.032 c0.214,0,0.43-0.009,0.647-0.025c1.341-0.107,31.956-2.721,59.114-20.983c8.851,2.4,17.984,3.616,27.207,3.616 c57.243,0,103.813-46.57,103.813-103.813C512,59.615,465.43,13.045,408.187,13.045z M408.187,204.365 c-8.93,0-17.757-1.349-26.236-4.011c-2.468-0.774-5.158-0.333-7.248,1.194c-10.038,7.327-21.056,12.056-30.517,15.084 c4.232-5.582,8.752-12.292,12.989-20.038c1.928-3.525,1.001-7.929-2.185-10.378c-21.805-16.751-34.31-42.032-34.31-69.358 c0-48.252,39.255-87.507,87.507-87.507c48.252,0,87.507,39.255,87.507,87.507C495.694,165.11,456.439,204.365,408.187,204.365z"></path> </g> </g> <g> <g> <path d="M416.883,160.883h-0.544v-53.265h0.544c4.503,0,8.153-3.65,8.153-8.153s-3.65-8.153-8.153-8.153H399.49 c-4.503,0-8.153,3.65-8.153,8.153s3.65,8.153,8.153,8.153h0.544v53.265h-0.544c-4.503,0-8.153,3.65-8.153,8.153 c0,4.503,3.65,8.153,8.153,8.153h17.393c4.503,0,8.153-3.65,8.153-8.153C425.036,164.534,421.386,160.883,416.883,160.883z"></path> </g> </g> </g></svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold">Customer service</h3>
+          <p class="text-sm text-gray-500 mt-2">
+            Expert consulting service <br>
+            Live chat support
           </p>
         </div>
       </div>
     </section>
+
     <section class="py-16 bg-white">
       <h2
         class="text-2xl md:text-3xl font-bold text-center text-orange-500 mb-8"
@@ -893,9 +894,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-9.jpg"
+                alt="Product 9"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -925,9 +926,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-8.png"
+                alt="Product 8"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -957,9 +958,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-7.jpg"
+                alt="Product 7"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -989,9 +990,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-6.jpeg"
+                alt="Product 6"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1021,9 +1022,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-5.jpg"
+                alt="Product 5"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1053,9 +1054,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-4.jpg"
+                alt="Product 4"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1085,9 +1086,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-3.jpeg"
+                alt="Product 3"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1117,9 +1118,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-2.jpg"
+                alt="Product 2"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1149,9 +1150,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
+                src="img/product-1.jpg"
                 alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1208,6 +1209,7 @@
         </div>
       </div>
     </section>
+
     <section class="py-16 bg-white">
       <h2
         class="text-2xl md:text-3xl font-bold text-center text-orange-500 mb-8"
@@ -1222,9 +1224,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-9.jpg"
+                alt="Product 9"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1254,9 +1256,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-8.png"
+                alt="Product 8"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1286,9 +1288,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-7.jpg"
+                alt="Product 7"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1318,9 +1320,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-6.jpeg"
+                alt="Product 6"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1350,9 +1352,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-5.jpg"
+                alt="Product 5"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1382,9 +1384,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-4.jpg"
+                alt="Product 4"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1414,9 +1416,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-3.jpeg"
+                alt="Product 3"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1446,9 +1448,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
-                alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                src="img/product-2.jpg"
+                alt="Product 2"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1478,9 +1480,9 @@
               class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
             >
               <img
-                src="img/hero-1.jpg"
+                src="img/product-1.jpg"
                 alt="Product 1"
-                class="w-full h-52 object-cover mb-4"
+                class="w-full h-52 object-contain mb-4"
               />
               <p class="text-sm text-gray-700 mb-1 truncate w-full">
                 Диспенсер для мыла с подставк...
@@ -1537,6 +1539,7 @@
         </div>
       </div>
     </section>
+
     <section class="my-10">
       <h1
         class="text-2xl md:text-3xl font-bold text-center text-orange-500 my-10"
@@ -1544,21 +1547,74 @@
         Mehsul kateqoriyalari
       </h1>
       <div class="gridCategories mx-2 max-md:flex max-md:flex-col">
-        <div class="item1"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item2"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item3"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item4"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item5"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item6"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item7"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item8"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item10"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item9"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item11"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item12"><img src="./img/hero-2.jpg" alt="category" /></div>
-        <div class="item13"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item1">
+          <img src="./img/hero-1.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 1</div>
+        </div>
+        <div class="item2">
+          <img src="./img/hero-2.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 2</div>
+        </div>
+        <div class="item3">
+          <img src="./img/hero-3.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 3</div>
+        </div>
+        <div class="item4">
+          <img src="./img/hero-4.webp" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 4</div>
+        </div>
+        <div class="item5">
+          <img src="./img/hero-5.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 5</div>
+        </div>
+        <div class="item6">
+          <img src="./img/hero-1.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 6</div>
+        </div>
+        <div class="item7">
+          <img src="./img/hero-2.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 7</div>
+        </div>
+        <div class="item8">
+          <img src="./img/hero-3.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 8</div>
+        </div>
+        <div class="item10">
+          <img src="./img/hero-4.webp" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 9</div>
+        </div>
+        <div class="item9">
+          <img src="./img/hero-5.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 10</div>
+        </div>
+        <div class="item11">
+          <img src="./img/hero-1.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 11</div>
+        </div>
+        <div class="item12">
+          <img src="./img/hero-2.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 12</div>
+        </div>
+        <div class="item13">
+          <img src="./img/hero-3.jpg" alt="category" />
+          <div class="gradient"></div>
+          <div class="category-overlay">Kategori 13</div>
+        </div>
       </div>
     </section>
+
     <section class="my-12">
       <div class="w-[90%] mx-auto px-4">
         <h1
@@ -1567,68 +1623,62 @@
           Referanslar
         </h1>
         <div class="flex flex-wrap w-full justify-center max-w-screen-xl mx-auto">
-          <!-- Logo item örnekleri -->
-          <template id="logo-template">
-            <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group">
-              <img src="/img/logo.png" alt="Logo" class="max-w-full max-h-full object-contain grayscale" />
-            </div>
-          </template>
 
           <!-- 18 adet logo kutusu -->
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-1.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-2.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-3.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-3.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-4.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-4.jpeg" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-5.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-5.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-b border-gray-300">
-            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-6.jpeg" class="max-w-full max-h-full object-contain grayscale" />
           </div>
 
           <!-- 2. satır -->
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-7.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-3.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-8.webp" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-4.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-9.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-5.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-10.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
-            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-11.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-b border-gray-300">
-            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-12.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
 
           <!-- 3. satır -->
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
-            <img src="/img/hero-3.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-13.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
-            <img src="/img/hero-4.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-14.jpeg" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
-            <img src="/img/hero-5.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-15.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
-            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-16.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
           <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-gray-300">
-            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+            <img src="./img/ref-17.png" class="max-w-full max-h-full object-contain grayscale" />
           </div>
         </div>
       </div>
@@ -1646,15 +1696,13 @@
         <div class="w-full md:w-1/2">
           <img
             class="w-full rounded-xl object-cover"
-            src="./img/hero-2.jpg"
+            src="./img/about.jpg"
             alt="img"
           />
         </div>
         <div class="w-full md:w-1/2 space-y-4">
           <p class="text-lg md:text-2xl font-bold leading-relaxed">
-            ОКДЦ является клинической базой кафедры персонализированной и
-            трансляционной медицины Ростовского Государственного Медицинского
-            Университета.
+            Our company, which has been operating in the cleaning sector since 2018, offers a wide range of products to meet the hygiene needs of your homes and workplaces. We set out with the mission of delivering quality and reliable cleaning materials to our customers at affordable prices. By choosing environmentally friendly and health-safe products, we prioritize the health of both you and your family.
           </p>
           <p class="font-semibold">
             Email:
@@ -1687,15 +1735,15 @@
             class="mt-4 inline-flex items-center gap-2 text-white font-medium"
           >
             Подробнее
-            <span
-              class="w-9 border border-white rounded-full flex items-center justify-center"
-            >
-              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 invert transform -rotate-45 transition-all duration-400 group-hover:rotate-0" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.707,18.707a1,1,0,0,1-1.414-1.414L19.586,13H2a1,1,0,0,1,0-2H19.586L15.293,6.707a1,1,0,0,1,1.414-1.414l6,6a1,1,0,0,1,0,1.414Z"></path>
+              </svg>
             </span>
           </a>
         </div>
         <div
-          class="group bg-gradient-to-r flex flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+          class="group bg-gradient-to-r flex gap-10 flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
         >
           <p class="font-semibold text-white">О противодействии коррупции</p>
           <a
@@ -1703,15 +1751,15 @@
             class="mt-4 inline-flex items-center gap-2 text-white font-medium"
           >
             Подробнее
-            <span
-              class="w-9 border border-white rounded-full flex items-center justify-center"
-            >
-              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 invert transform -rotate-45 transition-all duration-400 group-hover:rotate-0" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.707,18.707a1,1,0,0,1-1.414-1.414L19.586,13H2a1,1,0,0,1,0-2H19.586L15.293,6.707a1,1,0,0,1,1.414-1.414l6,6a1,1,0,0,1,0,1.414Z"></path>
+              </svg>
             </span>
           </a>
         </div>
         <div
-          class="group bg-gradient-to-r flex flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+          class="group bg-gradient-to-r flex gap-10 flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
         >
           <p class="font-semibold text-white">О противодействии коррупции</p>
           <a
@@ -1719,15 +1767,15 @@
             class="mt-4 inline-flex items-center gap-2 text-white font-medium"
           >
             Подробнее
-            <span
-              class="w-9 border border-white rounded-full flex items-center justify-center"
-            >
-              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 invert transform -rotate-45 transition-all duration-400 group-hover:rotate-0" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.707,18.707a1,1,0,0,1-1.414-1.414L19.586,13H2a1,1,0,0,1,0-2H19.586L15.293,6.707a1,1,0,0,1,1.414-1.414l6,6a1,1,0,0,1,0,1.414Z"></path>
+              </svg>
             </span>
           </a>
         </div>
         <div
-          class="group bg-gradient-to-r flex flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+          class="group bg-gradient-to-r flex gap-10 flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
         >
           <p class="font-semibold text-white">О противодействии коррупции</p>
           <a
@@ -1735,10 +1783,10 @@
             class="mt-4 inline-flex items-center gap-2 text-white font-medium"
           >
             Подробнее
-            <span
-              class="w-9 border border-white rounded-full flex items-center justify-center"
-            >
-              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <span class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 invert transform -rotate-45 transition-all duration-400 group-hover:rotate-0" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.707,18.707a1,1,0,0,1-1.414-1.414L19.586,13H2a1,1,0,0,1,0-2H19.586L15.293,6.707a1,1,0,0,1,1.414-1.414l6,6a1,1,0,0,1,0,1.414Z"></path>
+              </svg>
             </span>
           </a>
         </div>
