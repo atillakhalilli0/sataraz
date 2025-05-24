@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000" />
+    <title>Satar.az</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      .gridCategories {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 250px;
+        gap: 10px;
+      }
+
+      .gridCategories > div {
+        background: #fef7ec;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden; 
+      }
+
+      .gridCategories > div img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px; 
+      }
+
+      .item1 { grid-column: span 3; grid-row: span 2; }
+      .item2 { grid-column: span 2; grid-row: span 2; }
+      .item3 { grid-column: 3; }
+      .item4 { grid-column: 3; }
+      .item5 { grid-column: 1; }
+      .item6 { grid-column: 2; }
+      .item7 { grid-column: 3; }
+      .item8 { grid-column: 1; }
+      .item9 { grid-column: 1; }
+      .item10 { grid-column: 2 / span 2; grid-row: span 2; }
+      .item11 { grid-column: 1; }
+      .item12 { grid-column: 2; }
+      .item13 { grid-column: 3; }
+    </style>
+  </head>
+  <body>
+    <header class="w-full absolute bg-transparent z-50">
+      <div class="w-[90%] mx-auto py-2 flex justify-between items-center">
+        <!-- Location -->
+        <div class="flex items-center gap-1">
+          <svg
+            class="w-[15px] h-auto text-red-500"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8l176 0 0 176c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z"
+            />
+          </svg>
+          <p class="text-sm">Baku</p>
+        </div>
+        <!-- Mobile Toggle Button -->
+        <div class="md:hidden" x-data="{ open: false }">
+          <button @click="open = !open" class="flex items-center gap-2">
+            <!-- Menu icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              viewBox="0 0 576 512"
+              fill="currentColor"
+            >
+              <path
+                d="M0 96C0 60.7 28.7 32 64 32l448 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24l224 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-224 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l224 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-224 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l224 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-224 0z"
+              />
+            </svg>
+            <!-- Arrow icon (rotates) -->
+            <svg
+              :class="open ? 'rotate-180' : 'rotate-0'"
+              class="w-3 h-3 transition-transform duration-300"
+              fill="currentColor"
+              viewBox="0 0 320 512"
+            >
+              <path
+                d="M31.3 192h257.4c28.5 0 42.9 34.5 22.6 54.6l-128.7 128c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.6 226.5 2.8 192 31.3 192z"
+              />
+            </svg>
+          </button>
+          <!-- Mobile Dropdown -->
+          <ul
+            class="absolute bg-white shadow-2xl p-4 space-y-3 text-sm right-4 mt-2 w-[280px] z-[100]"
+            x-show="open"
+            @click.away="open = false"
+            x-transition
+          >
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Доставка</a></li>
+            <li><a href="#">Оплата</a></li>
+            <li><a href="#">Возврат</a></li>
+            <li>
+              <span class="font-semibold block">Информация</span>
+              <ul class="pl-3 mt-1 space-y-2 text-gray-600 text-[14px]">
+                <li class="hover:bg-gray-100">
+                  <a href="#">
+                    Договор розничной купли-продажи<br />(публичная оферта)
+                  </a>
+                </li>
+                <li class="hover:bg-gray-100">
+                  <a href="#">Политика обработки персональных данных</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- Desktop Nav -->
+        <ul class="hidden md:flex space-x-4 text-sm text-gray-600">
+          <li class="hover:text-black"><a href="#">Контакты</a></li>
+          <li class="hover:text-black"><a href="#">Доставка</a></li>
+          <li class="hover:text-black"><a href="#">Оплата</a></li>
+          <li class="hover:text-black"><a href="#">Возврат</a></li>
+          <li class="relative group cursor-pointer hover:text-black">
+            <div class="flex items-center space-x-1">
+              <span>Информация</span>
+              <svg
+                class="w-3 h-3 transition-transform duration-[.3s] transform group-hover:rotate-180"
+                fill="currentColor"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  d="M31.3 192h257.4c28.5 0 42.9 34.5 22.6 54.6l-128.7 128c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.6 226.5 2.8 192 31.3 192z"
+                />
+              </svg>
+            </div>
+            <!-- Dropdown -->
+            <ul
+              class="absolute top-full right-0 shadow-2xl w-max bg-white shadow-md rounded p-2 space-y-2 text-gray-800 text-sm hidden group-hover:block z-[100]"
+            >
+              <li class="p-2 hover:bg-gray-100">
+                <a href="#">
+                  Договор розничной купли-продажи<br />(публичная оферта)
+                </a>
+              </li>
+              <li class="p-2 hover:bg-gray-100">
+                <a href="#"> Политика обработки персональных данных </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <hr class="border-black" />
+      <nav
+        id="mainNav"
+        class="fixed left-0 right-0 top-10 bg-transparent transition-all duration-200 ease-in-out z-50"
+      >
+        <div
+          class="w-[90%] mx-auto flex items-center gap-1 md:gap-10 justify-between py-1 md:py-2"
+        >
+          <div class="flex items-center justify-center gap-3">
+            <!-- Hamburger -->
+            <button
+              onclick="sideBar(true)"
+              class="rounded-lg transition duration-400 hover:bg-gray-300/50 hover:backdrop-blur-md hover:shadow-lg md:p-3 p-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-black w-5"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+                />
+              </svg>
+            </button>
+            <!-- Sidebar -->
+            <div
+              id="sidebarOverlay"
+              class="fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-500"
+              onclick="sideBar(false)"
+            >
+              <div
+                id="sidebar"
+                onclick="event.stopPropagation()"
+                class="fixed top-0 left-0 transform -translate-x-full transition-transform duration-500 bg-white w-full sm:w-[300px] h-full overflow-y-scroll z-50"
+              >
+                <span
+                  onclick="sideBar(false)"
+                  class="w-5 top-2 right-2 cursor-pointer absolute"
+                >
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#000000"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        fill="#000000"
+                        d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"
+                      ></path>
+                    </g>
+                  </svg>
+                </span>
+                <img class="p-3" src="./img/logo.png" alt="logo" />
+                <div class="flex items-center gap-6 text-white bg-gray-800 p-3">
+                  <svg
+                    class="w-12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <circle
+                        cx="12"
+                        cy="9"
+                        r="3"
+                        stroke="#fff"
+                        stroke-width="2"
+                      ></circle>
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="#fff"
+                        stroke-width="2"
+                      ></circle>
+                      <path
+                        d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
+                        stroke="#fff"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      ></path>
+                    </g>
+                  </svg>
+                  <div class="flex flex-col text-xs">
+                    <div class="flex mb-2 text-teal-400">
+                      <p>Войти</p>
+                      |
+                      <p>Регистрация</p>
+                    </div>
+                    <p>Авторизуйтесь для получения расширенных возможностей</p>
+                  </div>
+                </div>
+                <ul class="p-3 font-semibold text-sm flex flex-col gap-2">
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                </ul>
+                <hr class="border-black/30" />
+                <div class="p-3 my-3">
+                  <div class="flex items-center gap-5">
+                    <p>Город:</p>
+                    <div class="flex items-center gap-1">
+                      <svg
+                        class="w-[15px] h-auto text-red-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8l176 0 0 176c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z"
+                        />
+                      </svg>
+                      <p class="text-sm text-teal-400">Baku</p>
+                    </div>
+                  </div>
+                </div>
+                <hr class="border-black/30" />
+                <ul class="p-3 font-semibold text-sm flex flex-col gap-2">
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                </ul>
+                <hr class="border-black/30" />
+                <ul class="p-3 font-semibold text-sm flex flex-col gap-2">
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                  <li><a href="#">Инвентарь для уборки</a></li>
+                </ul>
+                <div class="bg-gray-100 p-4 text-sm text-gray-800 space-y-1">
+                  <p>г. Москва,</p>
+                  <a
+                    href="tel:+74959977311"
+                    class="text-teal-600 hover:underline block"
+                    >+74959977311</a
+                  >
+                  <p>Пн-Пт 10.00 - 19.00</p>
+                  <a
+                    href="mailto:shop@chistota.ru"
+                    class="text-teal-600 underline block"
+                    >shop@chistota.ru</a
+                  >
+                  <a href="#" class="text-teal-600 underline block"
+                    >Посмотреть на карте</a
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Logo -->
+            <img
+              src="/img/logo.png"
+              alt="Logo"
+              class="max-w-[150px] lg:max-w-[200px]"
+            />
+          </div>
+          <div class="flex justify-between items-center lg:w-full">
+            <!-- Catalog Button -->
+            <div>
+              <button
+                onclick="toggleCatalog()"
+                class="flex items-center gap-1 bg-[#00A9AA] transition duration-400 text-white p-2 rounded-lg hover:bg-[#00c2c4] hidden md:flex"
+              >
+                <svg
+                  class="w-7 invert"
+                  fill="#000000"
+                  viewBox="0 0 256 256"
+                  id="Flat"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#000000"
+                  stroke-width="12.8"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke="#CCCCCC"
+                    stroke-width="0.512"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M112,44H48a4,4,0,0,0-4,4v64a4,4,0,0,0,4,4h64a4,4,0,0,0,4-4V48A4,4,0,0,0,112,44Zm-4,64H52V52h56ZM208,44H144a4,4,0,0,0-4,4v64a4,4,0,0,0,4,4h64a4,4,0,0,0,4-4V48A4,4,0,0,0,208,44Zm-4,64H148V52h56Zm-92,32H48a4,4,0,0,0-4,4v64a4.0002,4.0002,0,0,0,4,4h64a4.0002,4.0002,0,0,0,4-4V144A4,4,0,0,0,112,140Zm-4,64H52V148h56Zm100-64H144a4,4,0,0,0-4,4v64a4.0002,4.0002,0,0,0,4,4h64a4.0002,4.0002,0,0,0,4-4V144A4,4,0,0,0,208,140Zm-4,64H148V148h56Z"
+                    ></path>
+                  </g>
+                </svg>
+                <span class="hidden xl:flex">Каталог</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-3 h-3 hidden xl:flex"
+                  fill="currentColor"
+                  viewBox="0 0 320 512"
+                >
+                  <path
+                    d="M31.3 192h257.4c28.5 0 42.9 34.5 22.6 54.6l-128.7 128c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.6 226.5 2.8 192 31.3 192z"
+                  />
+                </svg>
+              </button>
+              <div class="relative z-50">
+                <div
+                  id="catalogOverlay"
+                  class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 z-40"
+                  onclick="toggleCatalog(false)"
+                >
+                  <div
+                    id="catalogDropdown"
+                    class="absolute inset-x-20 top-24 bg-white shadow-xl p-6 flex z-50"
+                  >
+                    <ul class="space-y-2 text-sm">
+                      <li>Акции</li>
+                      <li>Бренды</li>
+                      <li>Инвентарь для уборки</li>
+                      <li>Салфетки, губки, перчатки</li>
+                      <li>Для ванной и туалета</li>
+                      <li>Для уборки на кухне</li>
+                      <li>Для чистого пола</li>
+                      <li>Для стирки и глажения</li>
+                      <li>Текстиль для дома</li>
+                      <li>Техника для уборки</li>
+                      <li>Товары для дома</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Mobilde sadece ikon görünsün -->
+            <div class="flex md:hidden">
+              <button id="mobile-search-toggle" class="p-2">
+                <svg
+                  class="w-6 mr-2 text-black"
+                  fill="currentColor"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M505 442.7L405.3 343c28.4-34.9 45.7-79.4 45.7-127C451 96.5 354.5 0 233 0S15 96.5 15 216s96.5 216 216 216c47.6 0 92.1-17.3 127-45.7L442.7 505c4.5 4.5 10.6 7 17 7s12.5-2.5 17-7c9.4-9.4 9.4-24.6 0-34zM233 392c-97 0-176-79-176-176S136 40 233 40s176 79 176 176-79 176-176 176z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!-- Arama inputu -->
+            <div
+              id="mobile-search-container"
+              class="hidden fixed left-2 right-2 z-50 bg-white rounded-lg shadow md:static md:z-0 md:bg-transparent md:shadow-none md:relative md:flex md:mx-4 w-full"
+            >
+              <div class="relative w-full">
+                <input
+                  type="text"
+                  placeholder="Искать товары"
+                  class="w-full pl-4 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00A8A8]"
+                />
+                <svg
+                  class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-black hover:text-red-600"
+                  fill="currentColor"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M505 442.7L405.3 343c28.4-34.9 45.7-79.4 45.7-127C451 96.5 354.5 0 233 0S15 96.5 15 216s96.5 216 216 216c47.6 0 92.1-17.3 127-45.7L442.7 505c4.5 4.5 10.6 7 17 7s12.5-2.5 17-7c9.4-9.4 9.4-24.6 0-34zM233 392c-97 0-176-79-176-176S136 40 233 40s176 79 176 176-79 176-176 176z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <!-- Icons -->
+            <div class="flex items-center text-gray-700 text-sm">
+              <!-- Phone -->
+              <div
+                onclick="toggleContact()"
+                href="tel:+74959977311"
+                class="flex items-center gap-1 transition duration-400 cursor-pointer hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg md:p-3 p-1 rounded-lg font-bold text-base"
+              >
+                <svg
+                  class="h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M5.13641 12.764L8.15456 9.08664C8.46255 8.69065 8.61655 8.49264 8.69726 8.27058C8.76867 8.07409 8.79821 7.86484 8.784 7.65625C8.76793 7.42053 8.67477 7.18763 8.48846 6.72184L7.77776 4.9451C7.50204 4.25579 7.36417 3.91113 7.12635 3.68522C6.91678 3.48615 6.65417 3.35188 6.37009 3.29854C6.0477 3.238 5.68758 3.32804 4.96733 3.5081L3 4C3 14 9.99969 21 20 21L20.4916 19.0324C20.6717 18.3121 20.7617 17.952 20.7012 17.6296C20.6478 17.3456 20.5136 17.0829 20.3145 16.8734C20.0886 16.6355 19.7439 16.4977 19.0546 16.222L17.4691 15.5877C16.9377 15.3752 16.672 15.2689 16.4071 15.2608C16.1729 15.2536 15.9404 15.3013 15.728 15.4001C15.4877 15.512 15.2854 15.7143 14.8807 16.119L11.8274 19.1733M12.9997 7C13.9765 7.19057 14.8741 7.66826 15.5778 8.37194C16.2815 9.07561 16.7592 9.97326 16.9497 10.95M12.9997 3C15.029 3.22544 16.9213 4.13417 18.366 5.57701C19.8106 7.01984 20.7217 8.91101 20.9497 10.94"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </g>
+                </svg>
+                <p class="hidden lg:flex">+74959977311</p>
+                <svg
+                  class="w-3 h-3 hidden lg:flex"
+                  fill="currentColor"
+                  viewBox="0 0 320 512"
+                >
+                  <path
+                    d="M31.3 192h257.4c28.5 0 42.9 34.5 22.6 54.6l-128.7 128c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.6 226.5 2.8 192 31.3 192z"
+                  />
+                </svg>
+              </div>
+              <div
+                id="contactOverlay"
+                class="fixed hidden inset-0 bg-black/10 z-50"
+                onclick="closeContact()"
+              >
+                <div
+                  id="contactModal"
+                  class="w-full md:w-80 p-4 bg-white rounded shadow absolute md:right-52 top-24 right-0"
+                  onclick="event.stopPropagation()"
+                >
+                  <!-- Close Icon -->
+                  <button
+                    onclick="closeContact()"
+                    class="absolute top-2 right-2 text-gray-600 hover:text-black"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                  <!-- Content -->
+                  <div class="text-xl font-bold text-gray-800 mb-1">
+                    +74959977311
+                  </div>
+                  <div class="text-sm text-gray-600 mb-3">
+                    Пн-Пт: 9:00–18:00
+                  </div>
+                  <hr class="mb-3" />
+                  <div class="text-sm text-gray-500 font-semibold mb-1">
+                    Email
+                  </div>
+                  <div class="text-sm text-gray-700 mb-3">shop@chistota.ru</div>
+                  <div class="text-sm text-gray-500 font-semibold mb-1">
+                    Адрес
+                  </div>
+                  <div class="text-sm text-gray-700">Россия, Москва,</div>
+                </div>
+              </div>
+              <!-- Icons -->
+              <a
+                class="hidden md:flex transition duration-400 hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg md:p-3 p-1 rounded-lg"
+                href="#"
+                title="Statistics"
+              >
+                <svg
+                  class="h-6"
+                  viewBox="0 0 24.00 24.00"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#000000"
+                  stroke="#000000"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <defs>
+                      <style>
+                        .a {
+                          fill: none;
+                          stroke: #000000;
+                          stroke-linecap: round;
+                          stroke-linejoin: round;
+                          stroke-width: 2;
+                        }
+                      </style>
+                    </defs>
+                    <line class="a" x1="2" x2="22" y1="20" y2="20"></line>
+                    <path
+                      class="a"
+                      d="M5,20V8.2A.2.2,0,0,1,5.2,8H7.8a.2.2,0,0,1,.2.2V20"
+                    ></path>
+                    <path
+                      class="a"
+                      d="M11,20V4.26667C11,4.11939,11.08954,4,11.2,4h2.6c.11046,0,.2.11939.2.26667V20"
+                    ></path>
+                    <path
+                      class="a"
+                      d="M17,20V11.15c0-.08284.08954-.15.2-.15h2.6c.11046,0,.2.06716.2.15V20"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+              <a
+                class="hidden md:flex transition duration-400 hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg md:p-3 p-1 rounded-lg"
+                href="#"
+                title="Wishlist"
+              >
+                <svg
+                  class="h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+              <a
+                class="hidden md:flex transition duration-400 hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg md:p-3 p-1 rounded-lg"
+                href="#"
+                title="Account"
+              >
+                <svg
+                  class="h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <circle
+                      cx="12"
+                      cy="9"
+                      r="3"
+                      stroke="#1C274C"
+                      stroke-width="2"
+                    ></circle>
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="#1C274C"
+                      stroke-width="2"
+                    ></circle>
+                    <path
+                      d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
+                      stroke="#1C274C"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+              <a
+                class="transition duration-400 hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg md:p-3 p-1 rounded-lg"
+                href="#"
+                title="Cart"
+              >
+                <svg
+                  class="h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M4 0.75H1C0.447715 0.75 0 1.19772 0 1.75V2.25C0 2.80228 0.447715 3.25 1 3.25H3.0119L5.73626 14.7312C6.18267 16.6125 7.84065 17.9508 9.76471 17.9987V18H17.5874C19.5362 18 21.2014 16.5956 21.5301 14.6747L22.7857 7.33734C22.9947 6.11571 22.0537 5 20.8143 5H5.99657L5.21623 1.7114C5.08251 1.14787 4.57918 0.75 4 0.75Z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M10 21C10 22.1046 9.10457 23 8 23C6.89543 23 6 22.1046 6 21C6 19.8954 6.89543 19 8 19C9.10457 19 10 19.8954 10 21Z"
+                      fill="#000000"
+                    ></path>
+                    <path
+                      d="M21 21C21 22.1046 20.1046 23 19 23C17.8954 23 17 22.1046 17 21C17 19.8954 17.8954 19 19 19C20.1046 19 21 19.8954 21 21Z"
+                      fill="#000000"
+                    ></path>
+                  </g>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Swiper Container -->
+    <div class="swiper bannerSwiper relative h-[60vh] sm:h-[70vh] md:h-[75vh]">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide relative">
+          <img
+            src="/img/hero-1.jpg"
+            alt="Hero 1"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-[#ffffffaa] to-transparent"
+          >
+            <span class="absolute top-1/3 left-[10%]">
+              <p class="w-2/3 text-3xl font-bold">
+                Лучшие товары для чистоты и уборки
+              </p>
+              <br />
+              <p>Сделайте свой дом уютным и сияющим</p>
+            </span>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide relative">
+          <img
+            src="/img/hero-2.jpg"
+            alt="Hero 2"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-[#ffffffaa] to-transparent"
+          >
+            <span class="absolute top-1/3 left-[10%]">
+              <p class="w-2/3 text-3xl font-bold">
+                Лучшие товары для чистоты и уборки
+              </p>
+              <br />
+              <p>Сделайте свой дом уютным и сияющим</p>
+            </span>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide relative">
+          <img
+            src="/img/hero-3.jpg"
+            alt="Hero 3"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-[#ffffffaa] to-transparent"
+          >
+            <span class="absolute top-1/3 left-[10%]">
+              <p class="w-2/3 text-3xl font-bold">
+                Лучшие товары для чистоты и уборки
+              </p>
+              <br />
+              <p>Сделайте свой дом уютным и сияющим</p>
+            </span>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="swiper-slide relative">
+          <img
+            src="/img/hero-4.jpg"
+            alt="Hero 4"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-[#ffffffaa] to-transparent"
+          >
+            <span class="absolute top-1/3 left-[10%]">
+              <p class="w-2/3 text-3xl font-bold">
+                Лучшие товары для чистоты и уборки
+              </p>
+              <br />
+              <p>Сделайте свой дом уютным и сияющим</p>
+            </span>
+          </div>
+        </div>
+        <!-- Slide 5 -->
+        <div class="swiper-slide relative">
+          <img
+            src="/img/hero-5.jpg"
+            alt="Hero 5"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-[#ffffffaa] to-transparent"
+          >
+            <span class="absolute top-1/3 left-[10%]">
+              <p class="w-2/3 text-3xl font-bold">
+                Лучшие товары для чистоты и уборки
+              </p>
+              <br />
+              <p>Сделайте свой дом уютным и сияющим</p>
+            </span>
+          </div>
+        </div>
+        <!-- Add more slides here -->
+      </div>
+      <!-- Optional navigation -->
+      <!-- <div class="swiper-button-next text-white"></div>
+        <div class="swiper-button-prev text-white"></div>
+        <div class="swiper-pagination"></div> -->
+    </div>
+    <section class="py-20">
+      <h1 class="text-4xl font-bold text-center mb-12 text-gray-900">
+        Our Advantages
+      </h1>
+      <div
+        class="w-[90%] mx-auto px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+      >
+        <!-- Card Item -->
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full">
+              <!-- Sample SVG icon -->
+              <svg
+                class="w-8 h-8 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold">Own Production</h3>
+          <p class="text-sm text-gray-500 mt-2">
+            Modern equipment, full production cycle
+          </p>
+        </div>
+        <!-- Repeat for other cards -->
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full">
+              <svg
+                class="w-8 h-8 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold">Fast Delivery</h3>
+          <p class="text-sm text-gray-500 mt-2">Reliable and quick shipping</p>
+        </div>
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full">
+              <svg
+                class="w-8 h-8 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold">Customer Support</h3>
+          <p class="text-sm text-gray-500 mt-2">24/7 professional assistance</p>
+        </div>
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full">
+              <svg
+                class="w-8 h-8 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold">Sustainability</h3>
+          <p class="text-sm text-gray-500 mt-2">
+            Eco-friendly production process
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-white">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-center text-orange-500 mb-8"
+      >
+        Пользуются спросом <span class="text-gray-900">на этой неделе</span>
+      </h2>
+      <div class="relative w-[95%] mx-auto">
+        <!-- Swiper -->
+        <div class="swiper cardsSwiper p-10">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Swiper Navigation Buttons (inside .swiper for proper positioning) -->
+        </div>
+        <div
+          class="swiper-button-prevv w-10 h-10 flex items-center ml-5 justify-center rounded-full bg-white shadow-md text-gray-600 hover:bg-gray-100 absolute top-1/2 -left-5 z-10 transform -translate-y-1/2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M15 19l-7-7 7-7" />
+          </svg>
+        </div>
+        <div
+          class="swiper-button-nextt w-10 mr-5 h-10 flex items-center justify-center rounded-full bg-white shadow-md text-gray-600 hover:bg-gray-100 absolute top-1/2 -right-5 z-10 transform -translate-y-1/2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-white">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-center text-orange-500 mb-8"
+      >
+        Пользуются спросом <span class="text-gray-900">на этой неделе</span>
+      </h2>
+      <div class="relative w-[95%] mx-auto">
+        <!-- Swiper -->
+        <div class="swiper cardsSwiper2 p-10">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="swiper-slide bg-white rounded-md shadow p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src="img/hero-1.jpg"
+                alt="Product 1"
+                class="w-full h-52 object-cover mb-4"
+              />
+              <p class="text-sm text-gray-700 mb-1 truncate w-full">
+                Диспенсер для мыла с подставк...
+              </p>
+              <div class="text-xs text-gray-400">★ 0.0</div>
+              <div class="text-green-600 text-sm font-medium">В наличии</div>
+              <div class="mt-2 text-lg font-bold">
+                2 690<sup class="text-sm">00</sup> ₽
+              </div>
+              <button
+                class="mt-3 bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6H19m-12-6L5.4 5M16 17a2 2 0 1 1-4 0"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Swiper Navigation Buttons (inside .swiper for proper positioning) -->
+        </div>
+        <div
+          class="swiper-button-prevvv w-10 h-10 flex items-center ml-5 justify-center rounded-full bg-white shadow-md text-gray-600 hover:bg-gray-100 absolute top-1/2 -left-5 z-10 transform -translate-y-1/2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M15 19l-7-7 7-7" />
+          </svg>
+        </div>
+        <div
+          class="swiper-button-nexttt w-10 mr-5 h-10 flex items-center justify-center rounded-full bg-white shadow-md text-gray-600 hover:bg-gray-100 absolute top-1/2 -right-5 z-10 transform -translate-y-1/2"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </section>
+    <section class="my-10">
+      <h1
+        class="text-2xl md:text-3xl font-bold text-center text-orange-500 my-10"
+      >
+        Mehsul kateqoriyalari
+      </h1>
+      <div class="gridCategories mx-2">
+        <div class="item1"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item2"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item3"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item4"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item5"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item6"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item7"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item8"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item10"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item9"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item11"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item12"><img src="./img/hero-2.jpg" alt="category" /></div>
+        <div class="item13"><img src="./img/hero-2.jpg" alt="category" /></div>
+      </div>
+    </section>
+    <section class="my-12">
+      <div class="w-[90%] mx-auto px-4">
+        <h1
+          class="text-2xl md:text-3xl font-bold text-center text-orange-500 my-10"
+        >
+          Referanslar
+        </h1>
+        <div class="flex flex-wrap w-full justify-center max-w-screen-xl mx-auto">
+          <!-- Logo item örnekleri -->
+          <template id="logo-template">
+            <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group">
+              <img src="/img/logo.png" alt="Logo" class="max-w-full max-h-full object-contain grayscale" />
+            </div>
+          </template>
+
+          <!-- 18 adet logo kutusu -->
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-3.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-4.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-5.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-b border-gray-300">
+            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+
+          <!-- 2. satır -->
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-3.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-4.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-5.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-b border-gray-300">
+            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-b border-gray-300">
+            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+
+          <!-- 3. satır -->
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
+            <img src="/img/hero-3.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
+            <img src="/img/hero-4.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
+            <img src="/img/hero-5.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-r border-gray-300">
+            <img src="/img/hero-1.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+          <div class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 aspect-[4/3] p-4 flex items-center justify-center relative group border-gray-300">
+            <img src="/img/hero-2.jpg" class="max-w-full max-h-full object-contain grayscale" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-[90%] mx-auto my-10">
+      <h1
+        class="text-2xl md:text-3xl font-bold text-center text-orange-500 my-10"
+      >
+        About
+      </h1>
+      <div
+        class="flex flex-col md:flex-row gap-6 items-center p-3 bg-pink-600 rounded-2xl shadow-lg text-white"
+      >
+        <div class="w-full md:w-1/2">
+          <img
+            class="w-full rounded-xl object-cover"
+            src="./img/hero-2.jpg"
+            alt="img"
+          />
+        </div>
+        <div class="w-full md:w-1/2 space-y-4">
+          <p class="text-lg md:text-2xl font-bold leading-relaxed">
+            ОКДЦ является клинической базой кафедры персонализированной и
+            трансляционной медицины Ростовского Государственного Медицинского
+            Университета.
+          </p>
+          <p class="font-semibold">
+            Email:
+            <a
+              href="mailto:ptmed@rostgmu.ru"
+              class="underline hover:text-pink-200"
+              >ptmed@rostgmu.ru</a
+            >
+          </p>
+          <a href="#" class="block underline text-white hover:text-pink-200">
+            Календарный план циклов повышения квалификации 2024 года
+          </a>
+          <a
+            href="#"
+            class="inline-block bg-transparent text-white border-2 border-white px-4 py-2 rounded-full font-semibold hover:bg-white/50 transition duration-400"
+          >
+            Ссылка на информацию
+          </a>
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-10 text-white"
+      >
+        <div
+          class="group bg-gradient-to-r flex gap-10 flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+        >
+          <p class="font-semibold text-white">О противодействии коррупции</p>
+          <a
+            href="#"
+            class="mt-4 inline-flex items-center gap-2 text-white font-medium"
+          >
+            Подробнее
+            <span
+              class="w-9 border border-white rounded-full flex items-center justify-center"
+            >
+              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </span>
+          </a>
+        </div>
+        <div
+          class="group bg-gradient-to-r flex flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+        >
+          <p class="font-semibold text-white">О противодействии коррупции</p>
+          <a
+            href="#"
+            class="mt-4 inline-flex items-center gap-2 text-white font-medium"
+          >
+            Подробнее
+            <span
+              class="w-9 border border-white rounded-full flex items-center justify-center"
+            >
+              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </span>
+          </a>
+        </div>
+        <div
+          class="group bg-gradient-to-r flex flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+        >
+          <p class="font-semibold text-white">О противодействии коррупции</p>
+          <a
+            href="#"
+            class="mt-4 inline-flex items-center gap-2 text-white font-medium"
+          >
+            Подробнее
+            <span
+              class="w-9 border border-white rounded-full flex items-center justify-center"
+            >
+              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </span>
+          </a>
+        </div>
+        <div
+          class="group bg-gradient-to-r flex flex-col justify-between from-pink-600 via-pink-500 to-pink-400 p-6 rounded-xl shadow-lg relative"
+        >
+          <p class="font-semibold text-white">О противодействии коррупции</p>
+          <a
+            href="#"
+            class="mt-4 inline-flex items-center gap-2 text-white font-medium"
+          >
+            Подробнее
+            <span
+              class="w-9 border border-white rounded-full flex items-center justify-center"
+            >
+              <svg class="w-full invert transform -rotate-[45deg] transition-all duration-400 group-hover:rotate-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#1C274C" stroke-width="1.344" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-black text-white text-[16px]">
+      <div class="w-[90%] mx-auto py-12">
+        <div class="flex flex-wrap justify-between gap-y-10">
+          <!-- Şirkət -->
+          <div class="w-full md:w-1/2 lg:w-1/6">
+            <h3 class="text-[18px] mb-6">Şirkət</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Ana səhifə</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Haqqımızda</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Sertifikatlar</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Komandamız</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Əlaqə</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Məhsullar -->
+          <div class="w-full md:w-1/2 lg:w-[45%]">
+            <h3 class="text-[18px] mb-6">Məhsullar</h3>
+            <ul class="columns-2 gap-4 space-y-2">
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Qazanxana avadanlıqları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Boru armaturları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Ölçü avadanlıqları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Borular</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Radiatorlar</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Havalandırma avadanlıqları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Havalandırma materialları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Asqı və bağlantı elementləri</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >İzolasiya materialları</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Bloglar -->
+          <div class="w-full md:w-1/2 lg:w-[30%]">
+            <h3 class="text-[18px] mb-6">Bloglar</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Qazanxana avadanlıqları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Boru armaturları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Ölçü avadanlıqları</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-[#afadad] hover:text-white transition"
+                  >Borular</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Sosial ikonlar və logo -->
+        <div class="mt-12 flex flex-wrap items-center justify-between">
+          <div>
+            <ul class="flex items-center space-x-4">
+              <li>
+                <a
+                  href="https://www.facebook.com/share/1LXGFtqddz/?mibextid=wwXIfr"
+                  class="w-[30px] h-[30px] bg-white text-black rounded-full flex items-center justify-center border border-transparent duration-500 hover:border-white hover:invert hover:bg-transparent transition"
+                >
+                  <svg
+                    class="scale-[0.7]"
+                    fill="#000000"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 512 512"
+                    xml:space="preserve"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <g id="7935ec95c421cee6d86eb22ecd11b7e3">
+                        <path
+                          style="display: inline"
+                          d="M283.122,122.174c0,5.24,0,22.319,0,46.583h83.424l-9.045,74.367h-74.379 c0,114.688,0,268.375,0,268.375h-98.726c0,0,0-151.653,0-268.375h-51.443v-74.367h51.443c0-29.492,0-50.463,0-56.302 c0-27.82-2.096-41.02,9.725-62.578C205.948,28.32,239.308-0.174,297.007,0.512c57.713,0.711,82.04,6.263,82.04,6.263 l-12.501,79.257c0,0-36.853-9.731-54.942-6.263C293.539,83.238,283.122,94.366,283.122,122.174z"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/caspianklima?igsh=MXVvcWYxbnFvcW9kNw%3D%3D&utm_source=qr"
+                  class="w-[30px] h-[30px] bg-white text-black rounded-full flex items-center justify-center border border-transparent duration-500 hover:border-white hover:invert hover:bg-transparent transition"
+                >
+                  <svg
+                    class="scale-[0.7]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                        fill="#0F0F0F"
+                      ></path>
+                      <path
+                        d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                        fill="#0F0F0F"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z"
+                        fill="#0F0F0F"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="w-[30px] h-[30px] bg-white text-black rounded-full flex items-center justify-center border border-transparent duration-500 hover:border-white hover:invert hover:bg-transparent transition"
+                >
+                  <svg
+                    class="scale-[0.7]"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#000000"
+                    stroke="#000000"
+                    stroke-width="1.8240000000000003"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <defs>
+                        <style>
+                          .a {
+                            fill: none;
+                            stroke: #000000;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                          }
+                        </style>
+                      </defs>
+                      <path
+                        class="a"
+                        d="M43.1124,14.394a5.0056,5.0056,0,0,0-3.5332-3.5332c-2.3145-.8936-24.7326-1.3314-31.2358.0256A5.0059,5.0059,0,0,0,4.81,14.42c-1.0446,4.583-1.1239,14.4914.0256,19.1767A5.006,5.006,0,0,0,8.369,37.13c4.5829,1.0548,26.3712,1.2033,31.2358,0a5.0057,5.0057,0,0,0,3.5332-3.5333C44.2518,28.6037,44.3311,19.31,43.1124,14.394Z"
+                      ></path>
+                      <path
+                        class="a"
+                        d="M30.5669,23.9952,20.1208,18.004V29.9863Z"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/994504922222"
+                  class="w-[30px] h-[30px] bg-white text-black rounded-full flex items-center justify-center border border-transparent duration-500 hover:border-white hover:invert hover:bg-transparent transition"
+                >
+                  <svg
+                    class="scale-[0.7]"
+                    fill="#000000"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke="#000000"
+                    stroke-width="0.00016"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"
+                      ></path>
+                      <path
+                        d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+            <p class="text-[11px] pt-2">© 2025 SATAR.AZ</p>
+          </div>
+          <div>
+            <a href="#" class="block h-[25px]">
+              <img
+                src="./img/okmedialogo2.png"
+                alt="Okmedia logo"
+                class="h-full"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Swiper Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      const bannerSwiper = new Swiper(".bannerSwiper", {
+        loop: true,
+        autoplay: {
+          delay: 4000,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+
+    <script>
+      const cardsSwiper = new Swiper(".cardsSwiper", {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: false,
+        navigation: {
+          nextEl: ".swiper-button-nextt",
+          prevEl: ".swiper-button-prevv",
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+          1280: {
+            slidesPerView: 6,
+          },
+        },
+      });
+    </script>
+
+    <script>
+      const cardsSwiper2 = new Swiper(".cardsSwiper2", {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: false,
+        navigation: {
+          nextEl: ".swiper-button-nexttt",
+          prevEl: ".swiper-button-prevvv",
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+          1280: {
+            slidesPerView: 6,
+          },
+        },
+      });
+    </script>
+
+    <script>
+      const nav = document.getElementById("mainNav");
+
+      function updateNavbarOnScroll() {
+        const scrolled = window.scrollY > 10;
+
+        nav.classList.toggle("bg-white", scrolled);
+        nav.classList.toggle("shadow-md", scrolled);
+        nav.classList.toggle("top-0", scrolled);
+        nav.classList.toggle("bg-transparent", !scrolled);
+        nav.classList.toggle("top-10", !scrolled);
+      }
+
+      document.addEventListener("DOMContentLoaded", updateNavbarOnScroll);
+
+      window.addEventListener("scroll", updateNavbarOnScroll);
+    </script>
+
+    <script>
+      const toggleBtn = document.getElementById("mobile-search-toggle");
+      const searchContainer = document.getElementById(
+        "mobile-search-container"
+      );
+
+      toggleBtn?.addEventListener("click", () => {
+        searchContainer.classList.toggle("hidden");
+      });
+
+      document.addEventListener("click", (e) => {
+        const isClickInsideSearch =
+          searchContainer.contains(e.target) || toggleBtn.contains(e.target);
+
+        if (
+          !isClickInsideSearch &&
+          !searchContainer.classList.contains("hidden")
+        ) {
+          searchContainer.classList.add("hidden");
+        }
+      });
+    </script>
+
+    <script>
+      function sideBar(open) {
+        const [sidebar, overlay] = ["sidebar", "sidebarOverlay"].map((id) =>
+          document.getElementById(id)
+        );
+
+        overlay.classList.toggle("pointer-events-none", !open);
+        overlay.classList.toggle("opacity-0", !open);
+        overlay.classList.toggle("opacity-100", open);
+        sidebar.classList.toggle("-translate-x-full", !open);
+        sidebar.classList.toggle("translate-x-0", open);
+
+        !open &&
+          setTimeout(() => overlay.classList.add("pointer-events-none"), 500);
+      }
+    </script>
+
+    <script>
+      const catalogDropdown = document.getElementById("catalogDropdown");
+      const catalogOverlay = document.getElementById("catalogOverlay");
+
+      function toggleCatalog(forceOpen = null) {
+        const isOpen = catalogDropdown.classList.contains("opacity-100");
+
+        const shouldOpen = forceOpen === null ? !isOpen : forceOpen;
+
+        if (shouldOpen) {
+          catalogDropdown.classList.remove("opacity-0", "pointer-events-none");
+          catalogDropdown.classList.add("opacity-100");
+
+          catalogOverlay.classList.remove("opacity-0", "pointer-events-none");
+          catalogOverlay.classList.add("opacity-100");
+        } else {
+          catalogDropdown.classList.remove("opacity-100");
+          catalogDropdown.classList.add("opacity-0", "pointer-events-none");
+
+          catalogOverlay.classList.remove("opacity-100");
+          catalogOverlay.classList.add("opacity-0", "pointer-events-none");
+        }
+      }
+
+      // Document click listener
+      document.addEventListener("click", (e) => {
+        const isInsideDropdown = catalogDropdown.contains(e.target);
+        const isCatalogBtn = e.target.closest(
+          "button[onclick='toggleCatalog()']"
+        );
+
+        if (
+          !isInsideDropdown &&
+          !isCatalogBtn &&
+          catalogDropdown.classList.contains("opacity-100")
+        ) {
+          toggleCatalog(false);
+        }
+      });
+    </script>
+
+    <script>
+      function toggleContact() {
+        const overlay = document.getElementById("contactOverlay");
+        overlay.classList.toggle("hidden");
+      }
+
+      function updateContactOnScroll() {
+        const contactModal = document.getElementById("contactModal");
+        const scrolled = window.scrollY > 10;
+
+        // Önce tüm olası top sınıflarını kaldır
+        contactModal.classList.remove("top-24", "top-16");
+
+        // Yeni duruma göre uygun top sınıfını ekle
+        if (scrolled) {
+          contactModal.classList.add("top-16");
+        } else {
+          contactModal.classList.add("top-24");
+        }
+      }
+
+      function closeContact() {
+        document.getElementById("contactOverlay").classList.add("hidden");
+      }
+
+      // Sayfa yüklendiğinde konumu ayarla
+      window.addEventListener("scroll", updateContactOnScroll);
+      window.addEventListener("load", updateContactOnScroll);
+    </script>
+
+  </body>
+</html>
