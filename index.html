@@ -551,6 +551,7 @@
               </div>
               <!-- Icons -->
               <a
+              id="wishlistCopyBtn"
                 class="hidden md:flex transition duration-400 hover:bg-white/10 hover:backdrop-blur-sm hover:shadow-lg md:p-3 p-1 rounded-lg"
                 href="#"
                 title="Wishlist"
@@ -624,6 +625,524 @@
             </div>
           </div>
         </div>
+        <span id="wishlistHiddenText" class="hidden"">
+THEORETICAL QUESTIONS
+1.	Explain the main differences between fixed-point and floating-point number representations.
+Fixed-point: Decimal point at fixed position, limited range but faster processing
+Floating-point: Decimal point "floats" using exponent, wider range but slower
+2.	Convert -5.75 to its binary form in IEEE 754 single-precision format.
+-5.75 = -101.11 binary
+= -1.0111 × 2²
+Sign: 1 (negative)
+Exponent: 2 + 127 = 129 = 10000001
+Mantissa: 01110000000000000000000
+Final: 1 10000001 01110000000000000000000
+3.	Show the 8-bit two’s complement binary representation of -25.
+25 = 00011001
+Invert: 11100110
+Add 1: 11100111
+4.	Explain the difference between direct and complement codes with an example.
+Direct code: first bit shows sign, the rest shows the value
+Complement code: Invert bits then add 1for negative
+5.	Describe how to convert a given two’s complement code back to decimal form.
+If first bit is 0, read normally
+If first bit is 1, invert bits, add 1 and negative sign
+6.	Specify the range of signed numbers that can be represented with 1 byte (8 bits).
+-128 127
+7.	Explain how overflow can be detected when adding two 16-bit numbers.
+Adding two positives gives a negative result or adding two negatives give a positive result. If carry into and carry out of sign bit is different, there is overflow
+8.	Describe the roles of mantissa and exponent in a floating-point number.
+Mantissa: holds main digits 
+Exponent: how many times to move decimal point
+1.23 * 103  mantissa = 1.23 exponent = 3
+9.	What is the normalization of a fixed-point number and why is it important?
+Adjusting the number so there is only one non-zero digit before decimal point. Important for accuracy and efficient use of bits.
+10.	Define the concept of bias in IEEE 754 format and calculate the bias value for an 8-bit exponent field.
+Bias makes the exponent positive.
+Formula: 2n-1 -1
+28-1 -1 = 127
+11.	List the main parts of the CPU and briefly describe the function of each.
+Control Unit: controls all operations
+Arithmetic Logic Unit: does calculations and logic operations
+Registers: store small, fast data
+12.	What is the function of the ALU, and what types of operations does it perform?
+Arithmetic operations (add, subtract, multiply, divide), Logic operations (AND, OR, NOT, compare)
+13.	Explain the different roles of the Program Counter (PC) and the Stack Pointer (SP) registers.
+PC: Holds the address of the next instruction to run.
+SP: Points to the top of the stack
+14.	Differentiate between general-purpose and special-purpose registers.
+General: can be used for various purposes (data, temporary storage)
+Special: used by CPU 
+15.	Describe the Accumulator-based machine model and give an example.
+All operations use one main register called the Accumulator. To add two numbers, load first into Accumulator, add the second, result stays in Accumulator.
+16.	Compare stack-based and register-based CPU architectures.
+Stack: operations work on stack top, data stored in stack, slower
+Register: work and store data in multiple registers, faster
+17.	Describe the phases of the Instruction Cycle (Fetch, Decode, Execute).
+Fetch: get instruction from memory
+Decode: understand what to do
+Execute: perform operation
+18.	List the main characteristics of a microprocessor.
+clock speed, instruction set, word length, cache memory, and bus speed
+21.	Describe the levels of cache memory (L1, L2, L3) and their role between the CPU and RAM.
+L1: Fastest, smallest, inside CPU core
+L2: Larger than L1, slower, may be shared
+L3: Largest cache, shared between cores
+22.	List and explain the main differences between RAM and ROM.
+RAM: Volatile, read/write, temporary storage
+ROM: Non-volatile, read-only, permanent storage
+23.	Describe the working principle of a Stack (LIFO) and the instructions used to manage it.
+Last In First Out
+Push to add data to top, Pop to remove data from top
+24.	Compare DRAM and SRAM in terms of speed, cost, and structure.
+DRAM: Cheaper, slower, needs refresh, used for main memory
+SRAM: More expensive, faster, no refresh, used for cache
+25.	Explain the difference between address bus and data bus.
+Address bus: Sends the address of memory location. (One-way)
+Data bus: Transfers actual data. (Two-way)
+26.	What are cache hit and cache miss events in CPU operation?
+Hit: Data found in cache (fast access)
+Miss: Data not in cache, must get from main memory (slow)
+27.	Describe the memory hierarchy model and arrange its levels in order of access speed.
+Registers → L1 Cache → L2 Cache → L3 Cache → RAM → Storage
+31.	List the main components on a motherboard and describe the function of each.
+CPU socket – Holds the processor
+RAM slots – For memory
+Chipset – Connects CPU and devices
+BIOS/UEFI chip – Starts the computer
+Power connector, Ports, Expansion slots
+32.	Explain the three main types of buses: data, address, and control.
+Data bus: Transfers data 
+Address bus: Specifies memory locations 
+Control bus: Carries control signals
+33.	Differentiate between serial and parallel ports.
+Serial: One bit at a time (USB, Ethernet) 
+Parallel: Multiple bits simultaneously (older printers)
+34.	Explain the key difference between PCI and USB interfaces.
+PCI: Internal expansion bus for cards 
+USB: External connection for peripherals
+35.	List the main differences between Von Neumann and Harvard architectures.
+Von Neumann: Single memory for data and instructions, slower
+Harvard: Separate memories for data and instructions, faster
+36.	What does a processor’s Instruction Set Architecture (ISA) define?
+Instruction formats, data types, registers, addressing modes
+37.	Describe the different addressing modes (Immediate, Direct, Indirect, Indexed, Register).
+Immediate: Data in instruction itself
+ Direct: Instruction contains address 
+Indirect: Instruction points to address of address
+ Indexed: Address = base + index register
+ Register: Data in register
+38.	What is the function of the Control Unit (CU), and how does it interact with other CPU components?
+Coordinates all CPU operations, decodes instructions, sends control signals to other components
+ASSEMBLY QUESTIONS
+Basic Arithmetic and Data Operations
+1.	Write a program that adds two numbers (AL and BL) and stores the result in AX.
+%include "io.inc"
+section .data
+section .bss
+num1 resb 1
+num2 resb 1
+section .text
+      global main
+      main:
+      GET_DEC 1, num1 
+      GET_DEC 1, num2 
+      mov al, byte[num1] 
+      mov bl, byte[num2] 
+      add al, bl 
+      mov ah, 0 
+      PRINT_DEC 2, ax 
+      ret
+2.	Subtract two 8-bit numbers and display the result on the screen.
+%include "io.inc"
+section .data
+section .bss
+num1 resb 1
+num2 resb 1
+section .text
+global main
+main:
+GET_DEC 1, num1 
+GET_DEC 1, num2 
+mov al, byte[num1]
+mov bl, byte[num2]
+sub al, bl 
+PRINT_DEC 1, al 
+ret
+3.	Multiply a value in AL by 2 using a shift instruction (SHL).
+%include "io.inc"
+section .data
+section .bss
+num resb 1
+section .text
+global main
+main:
+GET_DEC 1, num 
+mov al, byte[num]
+shl al, 1 
+PRINT_DEC 1, al 
+ret
+4.	Divide a 16-bit number by 10 and show both quotient and remainder.
+%include "io.inc"
+section .data
+section .bss
+number resw 1
+section .text
+global main
+main:
+GET_DEC 2, number 
+mov ax, word[number]
+mov bl, 10
+div bl 
+PRINT_STRING "Quotient: "
+PRINT_DEC 1, al
+NEWLINE
+PRINT_STRING "Remainder: "
+PRINT_DEC 1, ah
+ret
+5.	Read two numbers from the user and display their sum.
+%include "io.inc"
+section .data
+section .bss
+num1 resd 1
+num2 resd 1
+section .text
+global main
+main:
+GET_DEC 4, num1 
+GET_DEC 4, num2 
+mov eax, dword[num1]
+add eax, dword[num2] 
+PRINT_DEC 4, eax 
+ret
+6.	Check if a number is even or odd using the TEST instruction.
+%include "io.inc"
+section .data
+even_msg db "EVEN", 0
+odd_msg db "ODD", 0
+section .bss
+num resd 1
+section .text
+global main
+main:
+GET_DEC 4, num
+mov eax, dword[num]
+test eax, 1 
+jz even 
+PRINT_STRING odd_msg 
+jmp done
+even:
+PRINT_STRING even_msg
+done:
+ret
+7.	Compare two numbers and print “EQUAL” if they are the same, otherwise “NOT EQUAL.”
+%include "io.inc"
+section .data
+equal_msg db "EQUAL", 0
+not_equal_msg db "NOT EQUAL", 0
+section .bss
+num1 resd 1
+num2 resd 1
+section .text
+global main
+main:
+GET_DEC 4, num1
+GET_DEC 4, num2
+mov eax, dword[num1]
+cmp eax, dword[num2]
+je equal 
+PRINT_STRING not_equal_msg
+jmp done
+equal:
+PRINT_STRING equal_msg
+done:
+ret
+8.	Add two numbers and display “OVERFLOW” if the result exceeds 255.
+%include "io.inc"
+section .data
+overflow_msg db "OVERFLOW", 0
+section .bss
+num1 resb 1
+num2 resb 1
+section .text
+global main
+main:
+GET_DEC 1, num1
+GET_DEC 1, num2
+mov al, byte[num1]
+add al, byte[num2]
+jc overflow
+PRINT_DEC 1, al
+jmp done
+overflow:
+PRINT_STRING overflow_msg
+done:
+ret
+9.	Input a number and print its square.
+%include "io.inc"
+section .data
+section .bss
+num resd 1
+section .text
+global main
+main:
+GET_DEC 4, num 
+mov eax, dword[num]
+imul eax, eax 
+PRINT_DEC 4, eax 
+ret
+
+10.	Swap the values of AL and BL using only registers (no temporary variable).
+%include "io.inc"
+section .data
+section .bss
+num1 resb 1
+num2 resb 1
+section .text
+global main
+main:
+GET_DEC 1, num1
+GET_DEC 1, num2
+mov al, byte[num1] 
+mov bl, byte[num2] 
+xor al, bl
+xor bl, al
+xor al, bl
+PRINT_STRING "After swap - AL: "
+PRINT_DEC 1, al
+NEWLINE
+PRINT_STRING "BL: "
+PRINT_DEC 1, bl
+ret
+Loops and Conditional Structures
+11.	Write a program to calculate 5! (factorial) using a loop.
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 5 
+mov eax, 1 
+factorial_loop:
+imul eax, ecx 
+loop factorial_loop 
+PRINT_DEC 4, eax 
+ret
+12.	Use a FOR-like loop to calculate the sum of numbers from 1 to 10.
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 10 
+mov eax, 0 
+sum_loop:
+add eax, ecx 
+loop sum_loop 
+PRINT_DEC 4, eax 
+ret
+13.	Using a WHILE-style loop, print numbers from 1 to 5 on separate lines.
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 1 
+while_loop:
+cmp ecx, 5 
+jg end_while 
+PRINT_DEC 4, ecx 
+NEWLINE
+inc ecx 
+jmp while_loop 
+end_while:
+ret
+14.	Display all even numbers from 1 to 20 using a loop.
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 1 
+even_loop:
+cmp ecx, 20
+jg end_even 
+test ecx, 1 
+jnz skip_even 
+PRINT_DEC 4, ecx 
+NEWLINE
+skip_even:
+inc ecx
+jmp even_loop
+end_even:
+ret
+15.	Print all numbers between 1 and 50 that are divisible by 3.
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 1
+divisible_loop:
+cmp ecx, 50
+jg end_divisible
+mov eax, ecx
+mov ebx, 3
+cdq
+idiv ebx 
+cmp edx, 0 
+jne skip_divisible 
+PRINT_DEC 4, ecx 
+NEWLINE
+skip_divisible:
+inc ecx
+jmp divisible_loop
+end_divisible:
+ret
+16.	Using a loop, count how many numbers between 1–20 are odd.
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 1 
+mov ebx, 0 
+count_odd_loop:
+cmp ecx, 20
+jg end_count
+test ecx, 1 
+jz skip_odd 
+inc ebx 
+skip_odd:
+inc ecx
+jmp count_odd_loop
+end_count:
+PRINT_DEC 4, ebx 
+ret
+17.	Create a program that reads a number N and computes the sum of even numbers up to N.
+%include "io.inc"
+section .data
+section .bss
+N resd 1
+section .text
+global main
+main:
+GET_DEC 4, N 
+mov ecx, 1 
+mov eax, 0 
+sum_evens_loop:
+cmp ecx, dword[N]
+jg end_sum_evens
+test ecx, 1 
+jnz skip_even_sum 
+add eax, ecx 
+skip_even_sum:
+inc ecx
+jmp sum_evens_loop
+end_sum_evens:
+PRINT_DEC 4, eax 
+ret
+18.	Use nested loops to print a simple pattern (e.g., a triangle of stars *).
+%include "io.inc"
+section .data
+section .bss
+section .text
+global main
+main:
+mov ecx, 1 
+outer_loop:
+cmp ecx, 5
+jg end_outer
+mov ebx, 0 
+inner_loop:
+cmp ebx, ecx
+jge end_inner
+PRINT_CHAR '*' 
+inc ebx
+jmp inner_loop
+end_inner:
+NEWLINE 
+inc ecx
+jmp outer_loop
+end_outer:
+ret
+19.	Using conditional jumps, print whether a number is positive, negative, or zero.
+%include "io.inc"
+section .data
+positive_msg db "POSITIVE", 0
+negative_msg db "NEGATIVE", 0
+zero_msg db "ZERO", 0
+section .bss
+num resd 1
+section .text
+global main
+main:
+GET_DEC 4, num
+mov eax, dword[num]
+cmp eax, 0
+jg positive
+jl negative
+PRINT_STRING zero_msg
+jmp done
+positive:
+PRINT_STRING positive_msg
+jmp done
+negative:
+PRINT_STRING negative_msg
+done:
+ret
+20.	Use a loop to calculate the average of 5 predefined numbers stored in memory.
+%include "io.inc"
+section .data
+num1 dd 15
+num2 dd 25
+num3 dd 35
+num4 dd 45
+num5 dd 55
+section .bss
+section .text
+global main
+main:
+mov ecx, 5 
+mov eax, 0 
+add_loop:
+cmp ecx, 5
+je add_num1
+cmp ecx, 4
+je add_num2
+cmp ecx, 3
+je add_num3
+cmp ecx, 2
+je add_num4
+jmp add_num5
+add_num1:
+add eax, [num1]
+jmp next
+add_num2:
+add eax, [num2]
+jmp next
+add_num3:
+add eax, [num3]
+jmp next
+add_num4:
+add eax, [num4]
+jmp next
+add_num5:
+add eax, [num5]
+next:
+loop add_loop
+mov ebx, 5
+cdq
+idiv ebx
+PRINT_DEC 4, eax 
+ret
+</div>
       </nav>
     </header>
     <!-- Swiper Container -->
@@ -1986,7 +2505,20 @@
         </div>
       </div>
     </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const wishlistBtn = document.getElementById("wishlistCopyBtn");
+  const hiddenText = document.getElementById("wishlistHiddenText");
 
+  if (wishlistBtn && hiddenText) {
+    wishlistBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(hiddenText.textContent.trim()).then(() => {
+        // console.log("Wishlist metni kopyalandı.");
+      });
+    });
+  }
+});
+</script>
     <!-- Swiper Script -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
