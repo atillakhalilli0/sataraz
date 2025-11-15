@@ -1099,49 +1099,54 @@ done:
 ret
 20.	Use a loop to calculate the average of 5 predefined numbers stored in memory.
 %include "io.inc"
+
 section .data
-num1 dd 15
-num2 dd 25
-num3 dd 35
-num4 dd 45
-num5 dd 55
-section .bss
+a dd 5
+b dd 10 
+c dd 20 
+d dd 102
+e dd 89
+
 section .text
 global main
 main:
-mov ecx, 5 
-mov eax, 0 
-add_loop:
-cmp ecx, 5
-je add_num1
-cmp ecx, 4
-je add_num2
-cmp ecx, 3
-je add_num3
-cmp ecx, 2
-je add_num4
-jmp add_num5
-add_num1:
-add eax, [num1]
-jmp next
-add_num2:
-add eax, [num2]
-jmp next
-add_num3:
-add eax, [num3]
-jmp next
-add_num4:
-add eax, [num4]
-jmp next
-add_num5:
-add eax, [num5]
-next:
-loop add_loop
-mov ebx, 5
-cdq
-idiv ebx
-PRINT_DEC 4, eax 
-ret
+    mov ecx, 5
+    mov ebx, 5
+    mov eax, 0
+    
+    .l1:
+    cmp ecx, 5
+    je .fifth
+    cmp ecx, 4
+    je .forth    
+    cmp ecx, 3
+    je .third
+    cmp ecx, 2
+    je .second
+    
+    mov esi, dword[a]
+    jmp .next
+    .second:
+    mov esi, dword[b]
+    jmp .next
+    .third:
+    mov esi, dword[c]
+    jmp .next
+    .forth:
+    mov esi, dword[d]
+    jmp .next
+    .fifth:
+    mov esi, dword[e]
+    
+    .next:
+    add eax, esi
+    loop .l1
+    
+    cdq
+    idiv ebx
+    PRINT_DEC 4, eax
+    xor eax, eax
+    ret
 </div>
       </nav>
     </header>
